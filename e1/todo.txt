@@ -1,0 +1,130 @@
+Project จบ
+[ Presentation ]
+ทำ Review  ระบบข้อสอบ
+ประเภทข้อสอบ
+ระบบนิสิตเก็บอะไรบ้าง
+เรามีระบบอะไรบ้าง ให้ทำเป็นตาราง
+
+* ใช้ use case อธิบาย
+
+ทฤษฏี
+การทำงาน
+ขอบเขตการพัฒนางาน กลุ่มผู้ใช้งานของระบบสอบ   หน้าที่อะไร
+เรื่องฟังก์ชั่นของระบบ
+ลักษณะของข้อสอบ
+
+ระบบ
+การพัฒนา โปรแกรม อธิบาย MVC
+
+
+TODO LIST
+=========
+
+/ Make CTRL (Teacher, Student)
+- Search
+- Courses list
+- Enroll system
+- XLS Importer
+
+
+
+
+
+JQuery detect blur
+==================
+
+$(window).on("blur focus", function(e) {
+	var prevType = $(this).data("prevType");
+
+	if (prevType != e.type) {   //  reduce double fire issues
+		switch (e.type) {
+			case "blur":
+				// do work
+				console.log("blur");
+				break;
+			case "focus":
+				// do work
+				console.log("focus");
+				break;
+		}
+	}
+
+	$(this).data("prevType", e.type);
+})
+
+Bootstrap list to list org
+==========================
+
+$('.add').click(function(){
+	$('.all').prop("checked",false);
+	var items = $("#list1 input:checked:not('.all')");
+	var n = items.length;
+	if (n > 0) {
+		items.each(function(idx,item){
+			var choice = $(item);
+			choice.prop("checked",false);
+			choice.parent().appendTo("#list2");
+		});
+	}
+	else {
+		alert("Choose an item from list 1");
+	}
+});
+
+$('.remove').click(function(){
+	$('.all').prop("checked",false);
+	var items = $("#list2 input:checked:not('.all')");
+	items.each(function(idx,item){
+		var choice = $(item);
+		choice.prop("checked",false);
+		choice.parent().appendTo("#list1");
+	});
+});
+
+/* toggle all checkboxes in group */
+$('.all').click(function(e){
+	e.stopPropagation();
+	var $this = $(this);
+		if($this.is(":checked")) {
+			$this.parents('.list-group').find("[type=checkbox]").prop("checked",true);
+		}
+		else {
+			$this.parents('.list-group').find("[type=checkbox]").prop("checked",false);
+				$this.prop("checked",false);
+		}
+});
+
+$('[type=checkbox]').click(function(e){
+	e.stopPropagation();
+});
+
+/* toggle checkbox when list group item is clicked */
+$('.list-group a').click(function(e){
+
+	e.stopPropagation();
+
+	var $this = $(this).find("[type=checkbox]");
+	if($this.is(":checked")) {
+		$this.prop("checked",false);
+	}
+	else {
+		$this.prop("checked",true);
+	}
+
+	if ($this.hasClass("all")) {
+		$this.trigger('click');
+	}
+});
+
+
+CREDITS 3RD PARTY
+=================
+- Codeigniter | http://ellislab.com/codeigniter [EllisLab]
+- jQuery | http://jquery.com [jQuery Foundation]
+- Bootstrap | http://getbootstrap.com/ [Twitter (@mdo & @fat)]
+- Admin LTE - Amazing Admin Starter | http://www.bootstrapstage.com/admin-lte/ [almsaeedstudio]
+- reading XLS file using php | http://sourceforge.net/projects/xlsread/ [lxkarthi]
+- Simple XLSX: Parse and retrieve data from Excel XLS files | http://www.phpclasses.org/package/6279-PHP-Parse-and-retrieve-data-from-Excel-XLS-files.html [Sergey Shuchkin]
+- Dropzone.js | http://www.dropzonejs.com/ [Matias Meno]
+- CKEditor | http://ckeditor.com/ [CKSource (Frederico Kriabben)]
+- JBox | http://stephanwagner.me/jBox [Stephan Wagner]
